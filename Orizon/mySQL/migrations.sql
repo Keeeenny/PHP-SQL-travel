@@ -12,6 +12,6 @@ CREATE TABLE paesi (
 
 CREATE TABLE viaggi (
   id INTEGER NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  nome_paese VARCHAR(255) NOT NULL,
+  destinazione VARCHAR(255) NOT NULL,
   posti_disponibili INTEGER NOT NULL
 );
