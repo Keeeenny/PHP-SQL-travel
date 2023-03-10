@@ -105,10 +105,9 @@ class Viaggio
 
 
       $query = "SELECT * FROM " . $this->table_name . " WHERE EXISTS (
-        SELECT * FROM paesi
-        WHERE FIND_IN_SET(" . $paese_table . ".nome_paese, " . $this->table_name . ".destinazione) > 0
-            AND " . $this->table_name . ".posti_disponibili > 0
-        )";
+        SELECT * FROM " . $paese_table . "
+        WHERE " . $this->table_name . ".destinazione LIKE CONCAT('%', " . $paese_table . ".nome_paese, '%')
+        )  AND " . $this->table_name . ".posti_disponibili > 0;";
 
         $stmt = $this->conn->prepare($query);
 
