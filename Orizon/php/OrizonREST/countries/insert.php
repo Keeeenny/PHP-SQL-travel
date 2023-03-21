@@ -17,24 +17,21 @@ $country = new Country($db);
 $data = json_decode(file_get_contents("php://input"));
 
 
-if(!empty($data->country_name) ){
+if (!empty($data->country_name)) {
 
     $country->country_name = $data->country_name;
 
-    if($country->create()){
+    if ($country->create()) {
         //CREATED
         http_response_code(201);
         echo json_encode(array("message" => "Country successfully added."));
-    }
-    else{
+    } else {
         // Errore 503 service unavailable
         http_response_code(503);
         echo json_encode(array("message" => "Unable to add the country."));
     }
-}
-else{
+} else {
     // Errore 400 Bad request
     http_response_code(400);
     echo json_encode(array("message" => "Unable to add the country the data is incomplete."));
 }
-?>
