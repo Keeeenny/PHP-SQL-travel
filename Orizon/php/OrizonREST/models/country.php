@@ -1,18 +1,18 @@
 <?php
 
-class Paese 
+class Country 
   {
 
     private $conn;
-    private $table_name = "paesi";
-    //proprietà dei paesi
+    private $table_name = "country";
+
     public $id;
-    public $nome_paese;
+    public $country_name;
    
 
 
 
-    //costruttore
+    //constructor
     public function __construct($db)
     {
      $this->conn = $db;
@@ -25,7 +25,7 @@ class Paese
     //READ
     function read()
     {
-     $query = "SELECT id, nome_paese FROM " . $this->table_name;
+     $query = "SELECT id, country_name FROM " . $this->table_name;
      $stmt = $this->conn->prepare($query);
 
  
@@ -38,13 +38,13 @@ class Paese
      //CREATE
     function create(){
       $query = "INSERT INTO " . $this->table_name . "
-      SET nome_paese=:nome_paese;";
+      SET country_name=:country_name;";
   
        $stmt = $this->conn->prepare($query);
           
-      $this->nome_paese = htmlspecialchars(strip_tags($this->nome_paese));
+      $this->country_name = htmlspecialchars(strip_tags($this->country_name));
           
-       $stmt->bindParam(":nome_paese", $this->nome_paese);
+       $stmt->bindParam(":country_name", $this->country_name);
       
        if($stmt->execute()){
           return true;
@@ -56,16 +56,16 @@ class Paese
     //UPDATE
     function update(){
       $query = "UPDATE " . $this->table_name . "
-      SET nome_paese = :nome_paese
+      SET country_name = :country_name
       WHERE id = :id";
 
       $stmt = $this->conn->prepare($query);
 
       $this->id = htmlspecialchars(strip_tags($this->id));
-      $this->nome_paese = htmlspecialchars(strip_tags($this->nome_paese));
+      $this->country_name = htmlspecialchars(strip_tags($this->country_name));
 
       $stmt->bindParam(":id", $this->id);
-      $stmt->bindParam(":nome_paese", $this->nome_paese);
+      $stmt->bindParam(":country_name", $this->country_name);
 
 
       if($stmt->execute()){

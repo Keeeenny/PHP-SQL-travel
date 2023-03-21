@@ -2,14 +2,13 @@
 
 class Database 
   {
-   //credenziali
    private $host = "localhost";
    private $db_name = "orizon_db";
    private $username = "root";
    private $password = "";
    public $conn;
 
-   //connessione al database
+   //connection to database
    public function getConnection()
      {
       $this->conn = null;
@@ -20,7 +19,7 @@ class Database
         }
         catch(PDOException $exception)
           {
-          echo "Errore di connessione: " . $exception->getMessage();
+          echo "Connection Error: " . $exception->getMessage();
           }
           return $this->conn;
      }

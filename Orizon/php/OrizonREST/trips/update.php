@@ -6,27 +6,27 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
 include_once '../config/database.php';
-include_once '../models/viaggio.php';
+include_once '../models/trip.php';
 
 $database = new Database();
 $db = $database->getConnection();
 
-$viaggio = new Viaggio($db);
+$trip = new Trip($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
-$viaggio->id = $data->id;
-$viaggio->destinazione = $data->destinazione;
-$viaggio->posti_disponibili = $data->posti_disponibili;
+$trip->id = $data->id;
+$trip->destination = $data->destination;
+$trip->available_seats = $data->available_seats;
 
-if($viaggio->update()){
+if($trip->update()){
     //OK
     http_response_code(200);
-    echo json_encode(array("risposta" => "Viaggio aggiornato"));
+    echo json_encode(array("response" => "Trip updated"));
 } else {
-    //503 servizio non disponibile
+    //503 service unavailable
     http_response_code(503);
-    echo json_encode(array("risposta" => "Impossibile aggiornare il viaggio"));
+    echo json_encode(array("response" => "Unable to update the trip"));
 }
 
 ?>

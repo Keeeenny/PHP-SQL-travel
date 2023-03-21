@@ -6,35 +6,36 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
 
 include_once '../config/database.php';
-include_once '../models/paese.php';
+include_once '../models/trip.php';
 
 
 $database = new Database();
 $db = $database->getConnection();
 
-$Paese = new Paese($db);
+$trip = new Trip($db);
 
 $data = json_decode(file_get_contents("php://input"));
 
 
-if(!empty($data->nome_paese) ){
+if(!empty($data->destination) && !empty($data->available_seats)){
 
-    $Paese->nome_paese = $data->nome_paese;
+    $trip->destination = $data->destination;
+    $trip->available_seats = $data->available_seats;
 
-    if($Paese->create()){
+    if($trip->create()){
         //CREATED
         http_response_code(201);
-        echo json_encode(array("message" => "Paese aggiunto correttamente."));
+        echo json_encode(array("message" => "Trip correctly added."));
     }
     else{
-        // Errore 503 servizio non disponibile
+        // Errore 503 service unavailable
         http_response_code(503);
-        echo json_encode(array("message" => "Impossibile aggiungere il paese."));
+        echo json_encode(array("message" => "Unable to add the trip."));
     }
 }
 else{
-    // Errore 400 cattiva richiesta
+    // Errore 400 bad request
     http_response_code(400);
-    echo json_encode(array("message" => "Impossibile creare il paese i dati sono incompleti."));
+    echo json_encode(array("message" => "Unable to add the trip the data are incomplete."));
 }
 ?>

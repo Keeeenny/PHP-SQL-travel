@@ -6,26 +6,25 @@ header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
  
 include_once '../config/database.php';
-include_once '../models/paese.php';
-
+include_once '../models/country.php';
+ 
 $database = new Database();
 $db = $database->getConnection();
-
-$paese = new Paese($db);
-
+ 
+$country = new Country($db);
+ 
 $data = json_decode(file_get_contents("php://input"));
-
-$paese->id = $data->id;
-$paese->nome_paese = $data->nome_paese;
-
-if($paese->update()){
+ 
+$country->id = $data->id;
+ 
+if($country->delete()){
     //OK
     http_response_code(200);
-    echo json_encode(array("risposta" => "Paese aggiornato"));
-} else {
-    //503 servizio non disponibile
+    echo json_encode(array("response" => "The country has been deleted."));
+}else{
+    //503 service unavailable
     http_response_code(503);
-    echo json_encode(array("risposta" => "Impossibile aggiornare il paese"));
+    echo json_encode(array("response" => "Unable to delete the country."));
 }
 
 ?>

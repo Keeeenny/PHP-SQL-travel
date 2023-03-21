@@ -1,16 +1,16 @@
 <?php
 
-class Viaggio 
+class Trip 
   {
     private $conn;
-    private $table_name = "viaggi";
-    //proprieta dei paesi
+    private $table_name = "trips";
+
     public $id;
-    public $destinazione;
-    public $posti_disponibili;
+    public $destination;
+    public $available_seats;
 
 
-    //costruttore
+    //construct
     public function __construct($db)
     {
      $this->conn = $db;
@@ -21,7 +21,7 @@ class Viaggio
     //READ
     function read()
     {
-     $query = "SELECT id, destinazione, posti_disponibili FROM " . $this->table_name;
+     $query = "SELECT id, destination, available_seats FROM " . $this->table_name;
      $stmt = $this->conn->prepare($query);
 
  
@@ -33,15 +33,15 @@ class Viaggio
     //CREATE
     function create(){
       $query = "INSERT INTO " . $this->table_name . "
-      SET destinazione=:destinazione, posti_disponibili=:posti_disponibili;";
+      SET destination=:destination, available_seats=:available_seats;";
   
        $stmt = $this->conn->prepare($query);
           
-      $this->destinazione = htmlspecialchars(strip_tags($this->destinazione));
-      $this->posti_disponibili = htmlspecialchars(strip_tags($this->posti_disponibili));
+      $this->destination = htmlspecialchars(strip_tags($this->destination));
+      $this->available_seats = htmlspecialchars(strip_tags($this->available_seats));
           
-       $stmt->bindParam(":destinazione", $this->destinazione);
-       $stmt->bindParam(":posti_disponibili", $this->posti_disponibili);
+       $stmt->bindParam(":destination", $this->destination);
+       $stmt->bindParam(":available_seats", $this->available_seats);
       
        if($stmt->execute()){
           return true;
@@ -53,20 +53,20 @@ class Viaggio
     //UPDATE
     function update(){
       $query = "UPDATE " . $this->table_name . "
-      SET destinazione = :destinazione,
-          posti_disponibili = :posti_disponibili
+      SET destination = :destination,
+      available_seats = :available_seats
       WHERE id = :id";
 
       $stmt = $this->conn->prepare($query);
 
       $this->id = htmlspecialchars(strip_tags($this->id));
-      $this->destinazione = htmlspecialchars(strip_tags($this->destinazione));
-      $this->posti_disponibili = htmlspecialchars(strip_tags($this->posti_disponibili));
+      $this->destination = htmlspecialchars(strip_tags($this->destination));
+      $this->available_seats = htmlspecialchars(strip_tags($this->available_seats));
 
 
       $stmt->bindParam(":id", $this->id);
-      $stmt->bindParam(":destinazione", $this->destinazione);
-      $stmt->bindParam(":posti_disponibili", $this->posti_disponibili);
+      $stmt->bindParam(":destination", $this->destination);
+      $stmt->bindParam(":available_seats", $this->available_seats);
 
 
       if($stmt->execute()){
@@ -96,18 +96,15 @@ class Viaggio
 
     }
 
-    function getPaeseTable() {
-
-    }
 
     //FILTER
-    function filter($paese_table){
+    function filter($country_table){
 
 
       $query = "SELECT * FROM " . $this->table_name . " WHERE EXISTS (
-        SELECT * FROM " . $paese_table . "
-        WHERE " . $this->table_name . ".destinazione LIKE CONCAT('%', " . $paese_table . ".nome_paese, '%')
-        )  AND " . $this->table_name . ".posti_disponibili > 0;";
+        SELECT * FROM " . $country_table . "
+        WHERE " . $this->table_name . ".destination LIKE CONCAT('%', " . $country_table . ".country_name, '%')
+        )  AND " . $this->table_name . ".available_seats > 0;";
 
         $stmt = $this->conn->prepare($query);
 

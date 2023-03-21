@@ -2,15 +2,15 @@
 # Travel 
 
 
-> Progetto PHP e MySQL.
+> PHP & MySQL project.
 
-Il progetto è stato creato con l'obiettivo di testare ciò che ho imparato in seguito allo studio della guida di PHP e MySQL. L'obiettivo del progetto è di sviluppare delle API JSON RESTful che hanno lo scopo di sponsorizzare le offerte di un'ipotetica agenzia di viaggi nata per far scoprire alle persone tipologie di viaggio sostenibili in grado di ampliare i loro orizzonti.
+This project was created to test my understanding of PHP and MySQL following my study of their guide. Its objective is to develop RESTful JSON APIs that promote the offers of a hypothetical travel agency. The agency's goal is to introduce people to sustainable travel options that broaden their horizons.
 
 
 
 
 ## API
 
-Le API consentono l'inserimento, la modifica e la cancellazione di un paese che avrà una sola caratteristica: il nome. Consentono anche l'inserimento, la modifica e la cancellazione di un viaggio che ha come caratteristiche le destinazioni che coinvolgono il viaggio e il numero di posti disponibili. Infine, le API consentono la visualizzazione di tutti i viaggi filtrati per paesi e numero di posti disponibili.
+These APIs enable the insertion, modification, and deletion of a country, which has only one attribute - its name. They also allow the management of trips, which are defined by their destinations and available seats. Additionally, the APIs allow for the filtering of trips by country and the number of available seats.
 
 
