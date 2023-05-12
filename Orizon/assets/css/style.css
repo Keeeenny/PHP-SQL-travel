@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,500;0,700;1,300&display=swap');
+
+body {
+    background-color: rgb(8, 28, 51);
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+    font-size: 4rem;
+    font-weight: 400;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    background-color: rgb(10, 204, 255);
+    padding: 2.4rem;
+    padding-top: 0.8rem;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.results {
+    margin-top: 70px;
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(7, 148, 179);
+    padding: 1rem;
+    min-width: 90%;
+    border-radius: 20px;
+}
+
+.results div h2 {
+    text-align: center;
+}
+
+.results div ul {
+    height: 700px;
+    overflow-y: auto;
+    margin: 10px;
+    padding: 0;
+    border-top: 1px solid #ccc;
+}
+
+.results div ul li {
+    display: flex;
+    justify-content: space-between;
+    min-width: 240px;
+}
+
+ul li {
+    border-bottom: 1px solid #ccc;
+    padding: 20px;
+}
+
+ul li p {
+    max-width: 400px;
+    overflow-x: hidden;
+}
+
+ul::-webkit-scrollbar {
+    width: 10px;
+    height: 6px;
+    background-color: #F5F5F5;
+  }
+
+  ul::-webkit-scrollbar-thumb {
+    background-color: rgb(10, 204, 255);
+    border-radius: 7px;
+    width: 8px;
+  }
+
+  ul::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(121, 212, 235);
+  }
+
+
+
+/* Edit button */
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 1rem;
+    height: 25px;
+}
+
+.btn .checkbox {
+    display: flex;
+    align-items: center;
+    appearance: none;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    cursor: pointer;
+    height: 100%;
+    width: 44px;
+}
+
+.btn .checkbox::after {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    content: 'Edit';
+    background-color: aliceblue;
+    border-radius: 4px;
+    height: 100%;
+    width: 100%;
+}
+
+
+.display:has(input:not(:checked)) .edit-form {
+    display: none;
+}
+
+.display:has(input:checked) p {
+    display: none;
+}
+
+.display:has(input:checked) .edit-form {
+    display: block;
+}
+
+.display:has(input:checked) .checkbox::after {
+    content: 'Cancel';
+}
+
+.btn .checkbox:has(input:checked) .checkbox::after {
+    margin: 20px;
+}
+
+.display {
+    display: flex;
+    align-items: center;
+    height: 50px;
+}
+
+.btn form {
+    height: 100%;
+}
+
+.btn form button {
+    height: 100%;
+    min-width: 25px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    margin-left: 5px
+}
+
+@media only screen and (max-width: 506px) {
+    h1 {
+        font-size: 3rem;
+    }
+
+
+    .results {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .results .section {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+    .results div ul {
+        padding: 0;
+        width: 80%;
+    }
+
+    .results div ul li {
+        margin: 0;
+        padding: 1rem;
+        font-size: 15px;
+    }
+}
+
+/* tablet */
+@media only screen and (min-width: 507px) and (max-width: 940px) {
+    .results {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+    .countries,
+    .trips {
+        flex: 1;
+        min-height: 300px;
+    }
+
+    .filtered-trips {
+        flex: 2;
+        min-height: 300px;
+    }
+}
