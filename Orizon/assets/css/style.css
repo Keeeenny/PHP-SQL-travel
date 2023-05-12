@@ -70,18 +70,30 @@ ul::-webkit-scrollbar {
     width: 10px;
     height: 6px;
     background-color: #F5F5F5;
-  }
+}
 
-  ul::-webkit-scrollbar-thumb {
+ul::-webkit-scrollbar-thumb {
     background-color: rgb(10, 204, 255);
     border-radius: 7px;
     width: 8px;
-  }
+}
 
-  ul::-webkit-scrollbar-thumb:hover {
+ul::-webkit-scrollbar-thumb:hover {
     background-color: rgb(121, 212, 235);
-  }
+}
 
+
+.submit {
+    background-color: white;
+    border-radius: 4px;
+    border: none;
+    height: 20px;
+}
+
+.submit:hover {
+    transition: 0.3s;
+    background-color: rgb(153, 216, 231);
+}
 
 
 /* Edit button */
@@ -115,6 +127,11 @@ ul::-webkit-scrollbar {
     border-radius: 4px;
     height: 100%;
     width: 100%;
+}
+
+.btn .checkbox:hover::after {
+    transition: 0.3s;
+    background-color: rgb(153, 216, 231);
 }
 
 
@@ -155,6 +172,11 @@ ul::-webkit-scrollbar {
     border: none;
     outline: none;
     margin-left: 5px
+}
+
+.btn form button:hover {
+    transition: 0.3s;
+    background-color: rgb(236, 187, 187);
 }
 
 @media only screen and (max-width: 506px) {
