@@ -5,11 +5,13 @@ CREATE DATABASE orizon_db;
 USE orizon_db;
 
 --Tables creation
-CREATE TABLE country (
+CREATE TABLE countries (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   country_name VARCHAR(255) NOT NULL UNIQUE
 );
 
 CREATE TABLE trips (
+  id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   destination VARCHAR(255) NOT NULL UNIQUE,
   available_seats INTEGER NOT NULL
 );
