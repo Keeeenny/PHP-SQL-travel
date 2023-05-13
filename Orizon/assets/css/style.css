@@ -4,12 +4,19 @@ body {
     background-color: rgb(8, 28, 51);
     color: white;
     font-family: 'Nunito', sans-serif;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
 }
 
 h1 {
     font-size: 4rem;
     font-weight: 400;
     text-align: center;
+    margin: 0;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 main {
@@ -21,12 +28,22 @@ main {
 .form {
     background-color: rgb(10, 204, 255);
     padding: 2.4rem;
-    padding-top: 0.8rem;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    height: 100px;
+    margin: 0;
 }
+
+.form h2 { 
+    margin: 0;
+    padding: 0;
+ }
+
+ .form form {
+    margin: 5px;
+ }
 
 .results {
     margin-top: 70px;
@@ -36,6 +53,8 @@ main {
     padding: 1rem;
     min-width: 90%;
     border-radius: 20px;
+    margin: 35px;
+    min-height: 500px
 }
 
 .results div h2 {
@@ -43,8 +62,9 @@ main {
 }
 
 .results div ul {
-    height: 700px;
+    height: 400px;
     overflow-y: auto;
+    overflow-x: none;
     margin: 10px;
     padding: 0;
     border-top: 1px solid #ccc;
@@ -53,10 +73,7 @@ main {
 .results div ul li {
     display: flex;
     justify-content: space-between;
-    min-width: 240px;
-}
-
-ul li {
+    min-width: 280px;
     border-bottom: 1px solid #ccc;
     padding: 20px;
 }
@@ -189,6 +206,7 @@ ul::-webkit-scrollbar-thumb:hover {
         flex-direction: column;
         align-items: center;
         justify-content: center;
+        min-height: 1480px;
     }
 
     .results .section {
@@ -202,18 +220,19 @@ ul::-webkit-scrollbar-thumb:hover {
 
     .results div ul {
         padding: 0;
-        width: 80%;
+        width: 90%;
     }
 
     .results div ul li {
         margin: 0;
         padding: 1rem;
         font-size: 15px;
+        min-width: 240px;
     }
 }
 
 /* tablet */
-@media only screen and (min-width: 507px) and (max-width: 940px) {
+@media only screen and (min-width: 507px) and (max-width: 1100px) {
     .results {
         display: flex;
         flex-wrap: wrap;
