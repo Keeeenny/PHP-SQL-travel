@@ -43,7 +43,7 @@ Infine bisognerà ricostruire il database con il file `migrations.sql`.
 
 #### READ
 
-Per iniziare possiamo controllare se le tabelle sono state create correttamente utilizzando il metodo GET e uno dei seguenti URL:
+Per iniziare possiamo controllare i dati all'interno delle tabelle utilizzando il metodo GET e uno dei seguenti URL:
 
 `http://localhost/Orizon/country`  
 `http://localhost/Orizon/trip`
