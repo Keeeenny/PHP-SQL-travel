@@ -55,11 +55,11 @@ Esempio
 
 #### API Paesi
 
-Per `inserire` un nuovo paese utilizziamo il metodo POST con il seguente URL:
+Per `inserire` un nuovo paese, utilizziamo il metodo POST con il seguente URL:
 
 `http://localhost/Orizon/country` 
 
-Con il seguente JSON nel Body:
+Con il seguente JSON nel corpo della richiesta:
 
 {  
 &nbsp;&nbsp;&nbsp;&nbsp;"country_name": "Canada"  
@@ -68,7 +68,7 @@ Con il seguente JSON nel Body:
 
 ![Post country](Orizon/assets/img/postcountry.png)
 
-Per `modificare` il nome di un paese utilizziamo il metodo PUT con il seguente URL:
+Per `modificare` il nome di un paese, utilizziamo il metodo PUT con il seguente URL:
 
 `http://localhost/Orizon/country` 
 
@@ -82,7 +82,7 @@ Nel JSON inseriremo l'ID del paese che vogliamo modificare e il nuovo nome.
 ![Put country](Orizon/assets/img/putcountry.png)
 
 
-Per `eliminare` un paese dal database utilizziamo il metodo DELETE con il seguente URL:
+Per `eliminare` un paese dal database, utilizziamo il metodo DELETE con il seguente URL:
 
 `http://localhost/Orizon/country/{id}` 
 
@@ -93,11 +93,11 @@ Dove {id] corrisponde all'ID del paese che vogliamo eliminare
 
 #### API Viaggi
 
-Per `inserire` un nuovo viaggio utilizziamo il metodo POST con il seguente URL:
+Per `inserire` un nuovo viaggio, utilizziamo il metodo POST con il seguente URL:
 
 `http://localhost/Orizon/trip` 
 
-Con il seguente JSON nel Body:
+Con il seguente JSON nel corpo della richiesta:
 
 {  
 &nbsp;&nbsp;&nbsp;&nbsp;"destination" : "Italia",  
@@ -107,7 +107,7 @@ Con il seguente JSON nel Body:
 ![Post trip](Orizon/assets/img/posttrip.png)
 
 
-Per `modificare` un viaggio utilizziamo il metodo PUT con il seguente URL:
+Per `modificare` un viaggio, utilizziamo il metodo PUT con il seguente URL:
 
 `http://localhost/Orizon/trip` 
 
@@ -122,7 +122,7 @@ Nel JSON inseriremo l'ID del paese che vogliamo modificare, il nuovo nome o il n
 ![Put trip](Orizon/assets/img/puttrip.png)
 
 
-Per `eliminare` un viaggio dal database utilizziamo il metodo DELETE con il seguente URL:
+Per `eliminare` un viaggio, dal database utilizziamo il metodo DELETE con il seguente URL:
 
 `http://localhost/Orizon/trip/{id}` 
 
@@ -130,7 +130,7 @@ Dove {id] corrisponde all'ID del viaggio che vogliamo eliminare
 
 ![Delete country](Orizon/assets/img/deletetrip.png)
 
-Per `filtrare` i viaggi disponibili in base ai paesi e numero di posti disponibili utilizziamo il metodo GET con il seguente URL:
+Per `filtrare` i viaggi disponibili in base ai paesi e numero di posti disponibili, utilizziamo il metodo GET con il seguente URL:
 
 `http://localhost/Orizon/filter`
 
@@ -138,6 +138,6 @@ Per `filtrare` i viaggi disponibili in base ai paesi e numero di posti disponibi
 
 ## Extra
 
-A fini didattici, ho sviluppato un'interfaccia utente che consente di provare le varie funzionalità dell'applicazione. L'applicazione è strutturata in modo semplice, con due moduli di inserimento dei dati nel database e tre colonne che mostrano tutte le informazioni salvate. Accanto a ciascuna riga, sono presenti dei pulsanti che consentono di interagire con gli elementi salvati. Una volta installato l'applicazione sarà possibile provarlo nel vosto local host.
+A fini didattici, ho sviluppato un'interfaccia utente che consente di provare le varie funzionalità dell'applicazione. L'applicazione è strutturata in modo semplice, con due moduli di inserimento dei dati nel database e tre colonne che mostrano tutte le informazioni salvate. Accanto a ciascuna riga, sono presenti dei pulsanti che consentono di interagire con gli elementi salvati. Una volta installata l'applicazione sarà possibile provarlo nel proprio localhost.
 
 ![Filter trip](Orizon/assets/img/app.png)
