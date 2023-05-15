@@ -43,14 +43,14 @@ main {
     margin: 0;
 }
 
-.form h2 { 
+.form h2 {
     margin: 0;
     padding: 0;
- }
+}
 
- .form form {
+.form form {
     margin: 5px;
- }
+}
 
 .results {
     margin-top: 70px;
@@ -196,7 +196,7 @@ ul::-webkit-scrollbar-thumb:hover {
     justify-content: center;
     height: 100%;
     width: 25px;
-    
+
 }
 
 .btn form button {

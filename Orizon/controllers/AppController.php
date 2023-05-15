@@ -18,7 +18,7 @@ class AppController
             // 200 Okay
             http_response_code(200);
             echo json_encode($countryList);
-        } else if (empty($countryList)){
+        } else if (empty($countryList)) {
             // 204 No Content
             http_response_code(204);
             echo json_encode(["message" => "The list is empty or unable to read."]);

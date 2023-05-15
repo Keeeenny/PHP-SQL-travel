@@ -152,14 +152,14 @@ class QueryBuilder
         return $count > 0;
     }
 
-        //Do the country name already exists?
-        public function nameExists($table, $column, $name)
-        {
-            $sql = "SELECT COUNT(*) FROM $table WHERE $column = ?";
-            $stmt = $this->pdo->prepare($sql);
-            $stmt->execute([$name]);
-            $count = $stmt->fetchColumn();
-    
-            return $count > 0 && $name !== "";
-        }
+    //Do the country name already exists?
+    public function nameExists($table, $column, $name)
+    {
+        $sql = "SELECT COUNT(*) FROM $table WHERE $column = ?";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$name]);
+        $count = $stmt->fetchColumn();
+
+        return $count > 0 && $name !== "";
+    }
 }
