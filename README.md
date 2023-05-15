@@ -101,7 +101,7 @@ Con il seguente JSON nel Body:
 
 {  
 &nbsp;&nbsp;&nbsp;&nbsp;"destination" : "Italia",  
-&nbsp;&nbsp;&nbsp;&nbsp;"available_seats" : 23  
+&nbsp;&nbsp;&nbsp;&nbsp;"available_seats" : 5  
 }
 
 ![Post trip](Orizon/assets/img/posttrip.png)
@@ -111,7 +111,7 @@ Per `modificare` un viaggio utilizziamo il metodo PUT con il seguente URL:
 
 `http://localhost/Orizon/trip` 
 
-Nel JSON inseriremo l'ID del paese che vogliamo modificare e il nuovo nome.
+Nel JSON inseriremo l'ID del paese che vogliamo modificare, il nuovo nome o il nuovo numero di posti disponibili.
 
 {  
 &nbsp;&nbsp;&nbsp;&nbsp;"id" : 13,  
@@ -132,12 +132,12 @@ Dove {id] corrisponde all'ID del viaggio che vogliamo eliminare
 
 Per `filtrare` i viaggi disponibili in base ai paesi e numero di posti disponibili utilizziamo il metodo GET con il seguente URL:
 
-http://localhost/Orizon/filter
+`http://localhost/Orizon/filter`
 
 ![Filter trip](Orizon/assets/img/filter.png)
 
 ## Extra
 
-A fini didattici, ho sviluppato un'interfaccia utente (frontend) che consente di provare le varie funzionalità dell'applicazione. L'applicazione è strutturata in modo semplice, con due moduli di inserimento dei dati nel database e tre colonne che mostrano tutte le informazioni salvate. Accanto a ciascuna riga, sono presenti dei pulsanti che consentono di interagire con gli elementi salvati.
+A fini didattici, ho sviluppato un'interfaccia utente che consente di provare le varie funzionalità dell'applicazione. L'applicazione è strutturata in modo semplice, con due moduli di inserimento dei dati nel database e tre colonne che mostrano tutte le informazioni salvate. Accanto a ciascuna riga, sono presenti dei pulsanti che consentono di interagire con gli elementi salvati. Una volta installato l'applicazione sarà possibile provarlo nel vosto local host.
 
 ![Filter trip](Orizon/assets/img/app.png)
