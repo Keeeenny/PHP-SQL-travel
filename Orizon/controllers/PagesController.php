@@ -5,10 +5,12 @@ class PagesController
 {
 
     protected $database;
+    protected $error_503;
 
     public function __construct()
     {
         $this->database = App::get('database');
+        $this->error_503 = "<p class='error'>Service Unavailable.</p>";
     }
 
     public function index()
@@ -24,10 +26,12 @@ class PagesController
             } else {
                 // 204 No Content
                 http_response_code(204);
+                echo "<p class='error'>The list is empty or unable to read.</p>";
             }
         } catch (\Exception $e) {
             //503 Service Unavailable
             http_response_code(503);
+            echo $this->error_503;
         }
 
         return view('index', compact('countries', 'trips', 'available_trips'));
@@ -35,15 +39,22 @@ class PagesController
 
     public function storeCountries()
     {
+        $countryName = $_POST['country'];
+
         try {
-            if ($this->database->insertCountry('countries', [
-                'country_name' => $_POST['country']
+            if ($this->database->nameExists('countries', 'country_name', $countryName)) {
+                // 409 Conflict
+                http_response_code(409);
+                echo "<p class='error'>The country you have sent already exists.</p>";
+            } else if ($this->database->insertCountry('countries', [
+                'country_name' => $countryName
             ])) {
                 // 201 Created
                 http_response_code(201);
             } else {
                 //503 Service Unavailable
                 http_response_code(503);
+                echo $this->error_503;
             }
         } catch (\Exception $e) {
             // 500 Internal Server Error
@@ -65,6 +76,7 @@ class PagesController
             } else {
                 //503 Service Unavailable
                 http_response_code(503);
+                echo $this->error_503;
             }
         } catch (\Exception $e) {
             // 500 Internal Server Error
@@ -87,6 +99,7 @@ class PagesController
             } else {
                 //503 Service Unavailable
                 http_response_code(503);
+                echo $this->error_503;
             }
         } catch (\Exception $e) {
             // 500 Internal Server Error
@@ -110,6 +123,7 @@ class PagesController
             } else {
                 //503 Service Unavailable
                 http_response_code(503);
+                echo $this->error_503;
             }
         } catch (\Exception $e) {
             // 500 Internal Server Error
@@ -131,6 +145,7 @@ class PagesController
             } else {
                 //503 Service Unavailable
                 http_response_code(503);
+                echo $this->error_503;
             }
         } catch (\Exception $e) {
             // 500 Internal Server Error
@@ -154,6 +169,7 @@ class PagesController
             } else {
                 //503 Service Unavailable
                 http_response_code(503);
+                echo $this->error_503;
             }
         } catch (\Exception $e) {
             // 500 Internal Server Error

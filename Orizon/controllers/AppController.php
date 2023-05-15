@@ -18,9 +18,10 @@ class AppController
             // 200 Okay
             http_response_code(200);
             echo json_encode($countryList);
-        } else {
+        } else if (empty($countryList)){
             // 204 No Content
             http_response_code(204);
+            echo json_encode(["message" => "The list is empty or unable to read."]);
         }
     }
 
@@ -28,22 +29,24 @@ class AppController
     {
         $data = json_decode(file_get_contents("php://input"));
 
-        if (!empty($data->country_name)) {
-            if ($this->database->insertCountry('countries', [
-                'country_name' => $data->country_name
-            ])) {
-                // 201 Created
-                http_response_code(201);
-                echo json_encode(["message" => "Country successfully added."]);
-            } else {
-                //503 Service Unavailable
-                http_response_code(503);
-                echo json_encode(["message" => "Unable to add the country."]);
-            }
-        } else {
+        if (empty($data->country_name)) {
             // 400 Bad request
             http_response_code(400);
             echo json_encode(["message" => "Unable to add the country the data are incomplete."]);
+        } else if ($this->database->nameExists('countries', 'country_name', $data->country_name)) {
+            // 409 Conflict
+            http_response_code(409);
+            echo json_encode(["message" => "Country alredy exists."]);
+        } else if ($this->database->insertCountry('countries', [
+            'country_name' => $data->country_name
+        ])) {
+            // 201 Created
+            http_response_code(201);
+            echo json_encode(["message" => "Country successfully added."]);
+        } else {
+            //503 Service Unavailable
+            http_response_code(503);
+            echo json_encode(["message" => "Unable to add the country."]);
         }
     }
 
