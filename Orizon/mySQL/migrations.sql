@@ -7,12 +7,12 @@ USE orizon_db;
 --Tables creation
 CREATE TABLE countries (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  country_name VARCHAR(255) NOT NULL UNIQUE
+  country_name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE trips (
   id INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  destination VARCHAR(255) NOT NULL UNIQUE,
+  destination VARCHAR(255) NOT NULL,
   available_seats INTEGER NOT NULL
 );
 
