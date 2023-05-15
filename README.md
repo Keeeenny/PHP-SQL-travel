@@ -76,7 +76,7 @@ Nel JSON inseriremo l'ID del paese che vogliamo modificare e il nuovo nome.
 
 {  
 &nbsp;&nbsp;&nbsp;&nbsp;"id" : ID,  
-&nbsp;&nbsp;&nbsp;&nbsp;"country_name" : "nuovo nome"  
+&nbsp;&nbsp;&nbsp;&nbsp;"country_name" : "new name"  
 }
 
 ![Put country](Orizon/assets/img/putcountry.png)
@@ -100,7 +100,7 @@ Per `inserire` un nuovo viaggio, utilizziamo il metodo POST con il seguente URL:
 Con il seguente JSON nel corpo della richiesta:
 
 {  
-&nbsp;&nbsp;&nbsp;&nbsp;"destination" : "Italia",  
+&nbsp;&nbsp;&nbsp;&nbsp;"destination" : "Italy",  
 &nbsp;&nbsp;&nbsp;&nbsp;"available_seats" : 5  
 }
 
@@ -115,7 +115,7 @@ Nel JSON inseriremo l'ID del paese che vogliamo modificare, il nuovo nome o il n
 
 {  
 &nbsp;&nbsp;&nbsp;&nbsp;"id" : 13,  
-&nbsp;&nbsp;&nbsp;&nbsp;"destination" : "Italia",  
+&nbsp;&nbsp;&nbsp;&nbsp;"destination" : "Italy",  
 &nbsp;&nbsp;&nbsp;&nbsp;"available_seats" : 4  
 }
 
