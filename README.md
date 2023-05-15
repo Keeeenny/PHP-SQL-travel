@@ -15,7 +15,7 @@ Le API consentono l'inserimento, la modifica e la cancellazione di un paese che 
 
 # Setup
 
-Per poter utilizzare le API fornite in questo progetto, è necessario eseguire alcuni passaggi di configurazione preliminari. In particolare, è necessario installare le dipendenze necessarie e configurare le variabili d'ambiente nel file .env.
+Per poter utilizzare le API fornite in questo progetto, è necessario eseguire alcuni passaggi di configurazione preliminari oltre alla ricostruzione del database. In particolare, è necessario installare le dipendenze necessarie e configurare le variabili d'ambiente nel file .env.
 
 ## Installazione delle dipendenze
 
