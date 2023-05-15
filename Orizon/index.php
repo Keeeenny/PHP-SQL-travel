@@ -1,7 +1,5 @@
 <?php
 
-$isEditing = false;
-
 require 'vendor/autoload.php';
 
 require 'core/bootstrap.php';
