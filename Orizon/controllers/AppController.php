@@ -87,23 +87,25 @@ class AppController
         if (!$this->database->doExists('countries', 'id', $data->id)) {
             echo json_encode(["message" => "Country not found or unable to update."]);
             http_response_code(404);
-        } else if (!empty($data->id) && !empty($data->country_name)) {
-            if ($this->database->editCountry('countries', [
-                'id' => $data->id,
-                'country_name' => $data->country_name
-            ])) {
-                // 200 Okay
-                http_response_code(200);
-                echo json_encode(["message" => "Country successfully updated."]);
-            } else {
-                //503 Service Unavailable
-                http_response_code(503);
-                echo json_encode(["message" => "Unable to update the country."]);
-            }
-        } else {
+        } else if ($this->database->nameExists('countries', 'country_name', $data->country_name)) {
+            // 409 Conflict
+            http_response_code(409);
+            echo json_encode(["message" => "Country alredy exists."]);
+        } else if (empty($data->id) || empty($data->country_name)) {
             // 400 Bad request
             http_response_code(400);
             echo json_encode(["message" => "Unable to update the country data are incomplete. "]);
+        } else if ($this->database->editCountry('countries', [
+            'id' => $data->id,
+            'country_name' => $data->country_name
+        ])) {
+            // 200 Okay
+            http_response_code(200);
+            echo json_encode(["message" => "Country successfully updated."]);
+        } else {
+            //503 Service Unavailable
+            http_response_code(503);
+            echo json_encode(["message" => "Unable to update the country."]);
         }
     }
 

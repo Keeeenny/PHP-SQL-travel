@@ -90,9 +90,17 @@ class PagesController
     public function editCountry()
     {
         try {
-            if ($this->database->editCountry('countries', [
-                'id' => $_POST['country_id'],
-                'country_name' => $_POST['new_name']
+
+            $id = $_POST['country_id'];
+            $countryName = $_POST['new_name'];
+
+            if ($this->database->nameExists('countries', 'country_name', $countryName)) {
+                // 409 Conflict
+                http_response_code(409);
+                echo json_encode(["message" => "Country alredy exists."]);
+            } else if ($this->database->editCountry('countries', [
+                'id' => $id,
+                'country_name' => $countryName
             ])) {
                 // 200 Okay
                 http_response_code(200);
