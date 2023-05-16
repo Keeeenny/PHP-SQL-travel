@@ -114,9 +114,9 @@ Per `modificare` un viaggio, utilizziamo il metodo PUT con il seguente URL:
 Nel JSON inseriremo l'ID del paese che vogliamo modificare, il nuovo nome o il nuovo numero di posti disponibili.
 
 {  
-&nbsp;&nbsp;&nbsp;&nbsp;"id" : 13,  
-&nbsp;&nbsp;&nbsp;&nbsp;"destination" : "Italy",  
-&nbsp;&nbsp;&nbsp;&nbsp;"available_seats" : 4  
+&nbsp;&nbsp;&nbsp;&nbsp;"id" : ID,  
+&nbsp;&nbsp;&nbsp;&nbsp;"destination" : "New name",  
+&nbsp;&nbsp;&nbsp;&nbsp;"available_seats" : new number  
 }
 
 ![Put trip](Orizon/assets/img/puttrip.png)
