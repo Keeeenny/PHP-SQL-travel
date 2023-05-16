@@ -45,8 +45,8 @@ Infine bisognerà ricostruire il database con il file `migrations.sql`.
 
 Per iniziare possiamo controllare i dati all'interno delle tabelle utilizzando il metodo GET e uno dei seguenti URL:
 
-`http://localhost/Orizon/country`  
-`http://localhost/Orizon/trip`
+`http://localhost/Orizon/countries`  
+`http://localhost/Orizon/trips`
 
 
 Esempio
@@ -57,7 +57,7 @@ Esempio
 
 Per `inserire` un nuovo paese, utilizziamo il metodo POST con il seguente URL:
 
-`http://localhost/Orizon/country` 
+`http://localhost/Orizon/countries` 
 
 Con il seguente JSON nel corpo della richiesta:
 
@@ -70,7 +70,7 @@ Con il seguente JSON nel corpo della richiesta:
 
 Per `modificare` il nome di un paese, utilizziamo il metodo PUT con il seguente URL:
 
-`http://localhost/Orizon/country` 
+`http://localhost/Orizon/countries` 
 
 Nel JSON inseriremo l'ID del paese che vogliamo modificare e il nuovo nome.
 
@@ -84,7 +84,7 @@ Nel JSON inseriremo l'ID del paese che vogliamo modificare e il nuovo nome.
 
 Per `eliminare` un paese dal database, utilizziamo il metodo DELETE con il seguente URL:
 
-`http://localhost/Orizon/country/{id}` 
+`http://localhost/Orizon/countries/{id}` 
 
 Dove {id] corrisponde all'ID del paese che vogliamo eliminare
 
@@ -95,7 +95,7 @@ Dove {id] corrisponde all'ID del paese che vogliamo eliminare
 
 Per `inserire` un nuovo viaggio, utilizziamo il metodo POST con il seguente URL:
 
-`http://localhost/Orizon/trip` 
+`http://localhost/Orizon/trips` 
 
 Con il seguente JSON nel corpo della richiesta:
 
@@ -109,7 +109,7 @@ Con il seguente JSON nel corpo della richiesta:
 
 Per `modificare` un viaggio, utilizziamo il metodo PUT con il seguente URL:
 
-`http://localhost/Orizon/trip` 
+`http://localhost/Orizon/trips` 
 
 Nel JSON inseriremo l'ID del paese che vogliamo modificare, il nuovo nome o il nuovo numero di posti disponibili.
 
@@ -124,7 +124,7 @@ Nel JSON inseriremo l'ID del paese che vogliamo modificare, il nuovo nome o il n
 
 Per `eliminare` un viaggio dal database, utilizziamo il metodo DELETE con il seguente URL:
 
-`http://localhost/Orizon/trip/{id}` 
+`http://localhost/Orizon/trips/{id}` 
 
 Dove {id] corrisponde all'ID del viaggio che vogliamo eliminare
 

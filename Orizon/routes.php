@@ -21,4 +21,4 @@ $router->post('Orizon/trips', 'AppController@storeTrip');
 $router->delete('Orizon/trips', 'AppController@deleteTrip');
 $router->put('Orizon/trips', 'AppController@updateTrip');
 
-$router->get('Orizon/filter', 'AppController@filterTrips');
+$router->get('Orizon/trips/filter', 'AppController@filterTrips');
