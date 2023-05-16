@@ -132,7 +132,7 @@ Dove {id] corrisponde all'ID del viaggio che vogliamo eliminare
 
 Per `filtrare` i viaggi disponibili in base ai paesi e numero di posti disponibili, utilizziamo il metodo GET con il seguente URL:
 
-`http://localhost/Orizon/filter`
+`http://localhost/Orizon/trips_filtered`
 
 ![Filter trip](Orizon/assets/img/filter.png)
 
