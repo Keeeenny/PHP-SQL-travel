@@ -183,7 +183,7 @@ class AppController
         if (!$this->database->doExists('trips', 'id', $data->id)) {
             echo json_encode(["message" => "trip not found or unable to update."]);
             http_response_code(404);
-        } else if (!empty($data->id) && !empty($data->destination) && isset($data->available_seats)) {
+        } else if (!empty($data->id) && !empty($data->destination) && isset($data->available_seats) && is_numeric($data->available_seats)) {
             if ($this->database->editTrip('trips', [
                 'id' => $data->id,
                 'destination' => $data->destination,
