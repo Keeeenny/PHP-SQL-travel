@@ -122,7 +122,7 @@ Nel JSON inseriremo l'ID del paese che vogliamo modificare, il nuovo nome o il n
 ![Put trip](Orizon/assets/img/puttrip.png)
 
 
-Per `eliminare` un viaggio, dal database utilizziamo il metodo DELETE con il seguente URL:
+Per `eliminare` un viaggio dal database, utilizziamo il metodo DELETE con il seguente URL:
 
 `http://localhost/Orizon/trip/{id}` 
 
