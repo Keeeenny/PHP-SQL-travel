@@ -10,6 +10,10 @@
             <h2>Submit trip</h2>
             <?php require('partials/form/form-trip.php'); ?>
         </div>
+        <div>
+            <h2>Filter</h2>
+            <?php require('partials/form/form-filter.php'); ?>
+        </div>
     </div>
     <div class="results">
         <div class="countries section">

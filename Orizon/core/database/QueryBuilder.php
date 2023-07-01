@@ -25,24 +25,31 @@ class QueryBuilder
         return true;
     }
 
-    //READ FILTER
-    public function filterTrips($country_table, $trip_table)
-    {
-        $sql = "SELECT * FROM $trip_table WHERE EXISTS (
-               SELECT * FROM  $country_table WHERE $trip_table.destination LIKE CONCAT('%', " . $country_table . ".country_name, '%')
-            )  AND  $trip_table.available_seats > 0;";
+// READ FILTER
+public function filterTrips($table, $destination = null, $availableSeats = null)
+{
+    $sql = "SELECT * FROM {$table} WHERE 1=1";
+    $params = array();
 
-        try {
-            $statement = $this->pdo->prepare($sql);
-            $statement->execute();
-            return $statement->fetchAll(PDO::FETCH_CLASS);
-        } catch (Exception $e) {
-            die('Something went wrong while getting the data.' . $e);
-            return false;
-        }
-        return true;
+    if (!is_null($destination)) {
+        $sql .= " AND LOWER(destination) = LOWER(:destination)";
+        $params[':destination'] = $destination;
     }
 
+    if (!is_null($availableSeats)) {
+        $sql .= " AND available_seats = :availableSeats";
+        $params[':availableSeats'] = $availableSeats;
+    }
+
+    try {
+        $statement = $this->pdo->prepare($sql);
+        $statement->execute($params);
+        return $statement->fetchAll(PDO::FETCH_CLASS);
+    } catch (Exception $e) {
+        die('Something went wrong while getting the data. ' . $e);
+        return false;
+    }
+}
 
     //CREATE COUNTRY 
     public function insertCountry($table, $parameters)
