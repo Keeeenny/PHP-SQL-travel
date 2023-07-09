@@ -4,7 +4,6 @@ namespace App\Core;
 
 class Router
 {
-
     public $routes = [
         'GET' => [],
         'POST' => [],
@@ -14,7 +13,7 @@ class Router
 
     public static function load($file)
     {
-        $router = new static;
+        $router = new static();
 
         require $file;
 
@@ -73,7 +72,7 @@ class Router
     {
         $controller = "App\\Controllers\\{$controller}";
 
-        $controller = new $controller;
+        $controller = new $controller();
 
         if (!method_exists($controller, $action)) {
 

@@ -5,7 +5,6 @@ namespace App\Controllers\CommonController;
 use App\Core\App;
 
 class CommonController
-
 {
     public static function readData()
     {
@@ -28,7 +27,7 @@ class CommonController
             ];
 
             return $data;
-            
+
         } catch (\Exception $e) {
             //503 Service Unavailable
             http_response_code(503);
@@ -48,7 +47,7 @@ class CommonController
         }
 
         $available_trips = $filtered_trips;
-        
+
         return view('index', compact('countries', 'trips', 'available_trips'));
     }
 

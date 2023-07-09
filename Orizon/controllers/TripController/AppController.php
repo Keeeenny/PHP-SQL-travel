@@ -2,11 +2,9 @@
 
 namespace App\Controllers\TripController;
 
-
 use App\Core\App;
 
 class AppController
-
 {
     protected $database;
 

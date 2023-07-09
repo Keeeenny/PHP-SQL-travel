@@ -6,9 +6,7 @@ use App\Controllers\CommonController\CommonController;
 use App\Core\App;
 
 class PagesController
-
 {
-
     protected $database;
     protected $error_503;
 

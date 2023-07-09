@@ -3,7 +3,6 @@
 namespace App\Core;
 
 class App
-
 {
     //DI Container
     protected static $registry = [];
@@ -12,7 +11,6 @@ class App
     {
         static::$registry[$key] = $value;
     }
-
 
     public static function get($key)
     {

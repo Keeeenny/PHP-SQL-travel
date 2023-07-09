@@ -2,11 +2,9 @@
 
 namespace App\Controllers\CountryController;
 
-
 use App\Core\App;
 
 class PagesController
-
 {
     protected $database;
     protected $error_503;
@@ -43,7 +41,7 @@ class PagesController
             // 201 Created
             http_response_code(201);
 
-            
+
         } catch (\Exception $e) {
             redirect('Orizon');
             // 500 Internal Server Error
@@ -64,7 +62,7 @@ class PagesController
                 // 409 Conflict
                 http_response_code(409);
                 echo json_encode(["message" => "Country alredy exists."]);
-            } 
+            }
 
             if (!$this->database->editCountry('countries', [
                 'id' => $id,
@@ -87,7 +85,7 @@ class PagesController
             echo json_encode(["message" => "Error: " . $e->getMessage()]);
         }
     }
-    
+
     public function removeCountry1()
     {
         try {
@@ -126,7 +124,7 @@ class PagesController
             redirect('Orizon');
             // 200 Okay
             http_response_code(200);
-            
+
         } catch (\Exception $e) {
             redirect('Orizon');
             // 500 Internal Server Error

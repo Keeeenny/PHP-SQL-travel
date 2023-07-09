@@ -2,11 +2,9 @@
 
 namespace App\Controllers\CountryController;
 
-
 use App\Core\App;
 
 class AppController
-
 {
     protected $database;
 
@@ -93,7 +91,7 @@ class AppController
         // 200 Okay
         http_response_code(200);
         echo json_encode(["message" => "The country has been deleted."]);
-    } 
+    }
 
     public function updateCountry()
     {

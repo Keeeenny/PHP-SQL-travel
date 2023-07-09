@@ -25,33 +25,33 @@ class QueryBuilder
         return true;
     }
 
-// READ FILTER
-public function filterTrips($table, $destination = null, $availableSeats = null)
-{
-    $sql = "SELECT * FROM {$table} WHERE 1=1";
-    $params = array();
+    // READ FILTER
+    public function filterTrips($table, $destination = null, $availableSeats = null)
+    {
+        $sql = "SELECT * FROM {$table} WHERE 1=1";
+        $params = array();
 
-    if (!is_null($destination)) {
-        $sql .= " AND LOWER(destination) = LOWER(:destination)";
-        $params[':destination'] = $destination;
+        if (!is_null($destination)) {
+            $sql .= " AND LOWER(destination) = LOWER(:destination)";
+            $params[':destination'] = $destination;
+        }
+
+        if (!is_null($availableSeats)) {
+            $sql .= " AND available_seats = :availableSeats";
+            $params[':availableSeats'] = $availableSeats;
+        }
+
+        try {
+            $statement = $this->pdo->prepare($sql);
+            $statement->execute($params);
+            return $statement->fetchAll(PDO::FETCH_CLASS);
+        } catch (Exception $e) {
+            die('Something went wrong while getting the data. ' . $e);
+            return false;
+        }
     }
 
-    if (!is_null($availableSeats)) {
-        $sql .= " AND available_seats = :availableSeats";
-        $params[':availableSeats'] = $availableSeats;
-    }
-
-    try {
-        $statement = $this->pdo->prepare($sql);
-        $statement->execute($params);
-        return $statement->fetchAll(PDO::FETCH_CLASS);
-    } catch (Exception $e) {
-        die('Something went wrong while getting the data. ' . $e);
-        return false;
-    }
-}
-
-    //CREATE COUNTRY 
+    //CREATE COUNTRY
     public function insertCountry($table, $parameters)
     {
         $column = implode(', ', array_keys($parameters));
@@ -59,7 +59,6 @@ public function filterTrips($table, $destination = null, $availableSeats = null)
 
         $sql = sprintf(
             'INSERT INTO %s (%s) VALUES (%s)',
-
             $table,
             $column,
             $value
@@ -68,14 +67,14 @@ public function filterTrips($table, $destination = null, $availableSeats = null)
             $statement = $this->pdo->prepare($sql);
             $statement->execute($parameters);
         } catch (Exception $e) {
-            echo ('Something went wrong. ' . $e);
+            echo('Something went wrong. ' . $e);
             return false;
         }
         return true;
     }
 
 
-    //CREATE TRIP 
+    //CREATE TRIP
     public function insertTrip($table, $parameters)
     {
         $column = implode(', ', array_keys($parameters));
@@ -108,7 +107,7 @@ public function filterTrips($table, $destination = null, $availableSeats = null)
             $statement = $this->pdo->prepare($sql);
             $statement->execute($parameters);
         } catch (Exception $e) {
-            echo ('Something went wrong. ' . $e);
+            echo('Something went wrong. ' . $e);
             return false;
         }
         return true;
