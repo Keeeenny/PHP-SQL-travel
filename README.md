@@ -132,7 +132,19 @@ Dove {id] corrisponde all'ID del viaggio che vogliamo eliminare
 
 Per `filtrare` i viaggi disponibili in base ai paesi e numero di posti disponibili, utilizziamo il metodo GET con il seguente URL:
 
-`http://localhost/Orizon/trips_filtered`
+`http://localhost/Orizon/filtered_trips?filters[country_name]={country}&filters[available_seats]={seats}`
+
+Dove {country} corrisponde al nome del paese che desideriamo cercare nel database e {seats} corrisponde al numero di posti disponibili per il viaggio.
+
+E' possibile filtrare i viaggi anche solo per nome utilizzando:
+
+`http://localhost/Orizon/filtered_trips?filters[country_name]={country}`
+
+O solo per posti dispobili utilizzando:
+
+`http://localhost/Orizon/filtered_trips?filters[available_seats]={seats}`
+
+
 
 ![Filter trip](Orizon/assets/img/filter.png)
 
