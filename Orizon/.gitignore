@@ -2,5 +2,7 @@
 .env
 # Ignore vendor/ folder
 vendor/
-# Ignora la directory "tools"
+# Ignore "tools"
 tools/
+# Ignore .php-cs-fixer.cache file
+.php-cs-fixer.cache

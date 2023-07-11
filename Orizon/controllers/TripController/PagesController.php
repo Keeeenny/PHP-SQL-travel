@@ -93,7 +93,7 @@ class PagesController
     public function filterTrips()
     {
         $countryName = $_POST['destination'] ? $_POST['destination'] : null;
-        $availableSeats = $_POST['available_seats'] ? $_POST['available_seats'] : null;
+        $availableSeats = isset($_POST['available_seats']) ? $_POST['available_seats'] : null;
 
         if (is_null($countryName) && is_null($availableSeats)) {
             redirect('Orizon');

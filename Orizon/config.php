@@ -3,7 +3,6 @@
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
-
 return [
     'database' => [
         'name' => $_ENV['NAME'],

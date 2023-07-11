@@ -105,7 +105,7 @@ class AppController
             return http_response_code(404);
         }
 
-        if (empty($data->id) || empty($data->destination) && !isset($data->available_seats) && !is_numeric($data->available_seats)) {
+        if (empty($data->id) || empty($data->destination) || !isset($data->available_seats) || !is_numeric($data->available_seats)) {
 
             // 400 Bad request
             echo json_encode(["message" => "Unable to update the trip data are incomplete. "]);
