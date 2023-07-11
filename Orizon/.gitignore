@@ -2,3 +2,5 @@
 .env
 # Ignore vendor/ folder
 vendor/
+# Ignora la directory "tools"
+tools/
