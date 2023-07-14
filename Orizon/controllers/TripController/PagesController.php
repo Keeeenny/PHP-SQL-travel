@@ -22,7 +22,7 @@ class PagesController
         try {
 
             if (!$this->database->insertTrip('trips', [
-                'destination' => $_POST['destination'],
+                'destination' => trim($_POST['destination']),
                 'available_seats' => $_POST['available_seats']
             ])) {
                 redirect('Orizon');
