@@ -22,7 +22,7 @@ class PagesController
         try {
 
             if (!$this->database->insertTrip('trips', [
-                'destination' => trim($_POST['destination']),
+                'destination' => $_POST['destination'],
                 'available_seats' => $_POST['available_seats']
             ])) {
                 redirect('Orizon');
@@ -92,7 +92,7 @@ class PagesController
 
     public function filterTrips()
     {
-        $countryName = $_POST['destination'] ? trim($_POST['destination']) : null;
+        $countryName = $_POST['destination'] ? $_POST['destination'] : null;
         $availableSeats = isset($_POST['available_seats']) && is_numeric($_POST['available_seats']) ? $_POST['available_seats'] : null;
 
         if (is_null($countryName) && is_null($availableSeats)) {

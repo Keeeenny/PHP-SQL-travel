@@ -26,14 +26,15 @@ class QueryBuilder
     }
 
     // READ FILTER
-    public function filterTrips($table, $destination = null, $availableSeats = null)
+    public function filterTrips($table, $countryName = null, $availableSeats = null)
     {
         $sql = "SELECT * FROM {$table} WHERE 1=1";
         $params = array();
 
-        if (!is_null($destination)) {
+        if (!is_null($countryName)) {
+            $trimmedCountryName = trim($countryName);
             $sql .= " AND LOWER(destination) = LOWER(:destination)";
-            $params[':destination'] = $destination;
+            $params[':destination'] = $trimmedCountryName;
         }
 
         if (!is_null($availableSeats)) {
@@ -54,8 +55,15 @@ class QueryBuilder
     //CREATE COUNTRY
     public function insertCountry($table, $parameters)
     {
-        $column = implode(', ', array_keys($parameters));
-        $value = ':' . implode(', :', array_keys($parameters));
+        $trimmedParameters = array_map('trim', $parameters);
+
+        if (empty(implode('', $trimmedParameters))) {
+            echo 'Invalid parameter value ';
+            return false;
+        }
+
+        $column = implode(', ', array_keys($trimmedParameters));
+        $value = ':' . implode(', :', array_keys($trimmedParameters));
 
         $sql = sprintf(
             'INSERT INTO %s (%s) VALUES (%s)',
@@ -65,7 +73,7 @@ class QueryBuilder
         );
         try {
             $statement = $this->pdo->prepare($sql);
-            $statement->execute($parameters);
+            $statement->execute($trimmedParameters);
         } catch (Exception $e) {
             echo('Something went wrong. ' . $e);
             return false;
@@ -77,6 +85,15 @@ class QueryBuilder
     //CREATE TRIP
     public function insertTrip($table, $parameters)
     {
+        $trimmedDestination = trim($parameters['destination']);
+
+        if (empty($trimmedDestination)) {
+            echo 'Invalid destination value ';
+            return false;
+        }
+
+        $parameters['destination'] = $trimmedDestination;
+
         $column = implode(', ', array_keys($parameters));
         $value = ':' . implode(', :', array_keys($parameters));
 
@@ -94,6 +111,7 @@ class QueryBuilder
             die('Something went wrong. ' . $e);
             return false;
         }
+
         return true;
     }
 
@@ -116,28 +134,44 @@ class QueryBuilder
     //UPDATE COUNTRY
     public function editCountry($table, $parameters)
     {
+        $trimmedParameters = array_map('trim', $parameters);
+
+        if (empty(trim($trimmedParameters['country_name']))) {
+            echo 'Invalid parameter value ';
+            return false;
+        }
+
         $sql = "UPDATE $table SET country_name = :country_name WHERE id = :id";
 
         try {
             $statement = $this->pdo->prepare($sql);
-            $statement->execute($parameters);
+            $statement->execute($trimmedParameters);
         } catch (Exception $e) {
             die('Something went wrong. ' . $e);
             return false;
         }
+
         return true;
     }
+
 
     //UPDATE TRIP
     public function editTrip($table, $parameters)
     {
+        $trimmedDestination = trim($parameters['destination']);
+
+        if (empty($trimmedDestination)) {
+            echo 'Invalid destination value ';
+            return false;
+        }
+
+        $parameters['destination'] = $trimmedDestination;
 
         $sql = "UPDATE $table 
                 SET destination = :destination, 
                     available_seats = :available_seats 
                 WHERE id = :id";
 
-
         try {
             $statement = $this->pdo->prepare($sql);
             $statement->execute($parameters);
@@ -145,8 +179,10 @@ class QueryBuilder
             die('Something went wrong. ' . $e);
             return false;
         }
+
         return true;
     }
+
 
     //Do exists?
     public function doExists($table, $column, $id)

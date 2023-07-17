@@ -137,16 +137,16 @@ class AppController
 
         $available_trips = $this->database->filterTrips('trips', $countryName, $availableSeats);
 
-        if (empty($available_trips)) {
-            // 200 Okay
-            echo json_encode(["message" => "The list is empty."]);
-            return http_response_code(200);
-        }
-
         if (!$available_trips) {
             // 503 Service Unavailable
             echo json_encode(["message" => "Something went wrong."]);
             return http_response_code(503);
+        }
+
+        if (empty($available_trips)) {
+            // 200 Okay
+            echo json_encode(["message" => "The list is empty."]);
+            return http_response_code(200);
         }
 
         // 200 Okay
