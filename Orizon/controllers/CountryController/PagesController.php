@@ -8,10 +8,13 @@ class PagesController
 {
     protected $database;
     protected $error_503;
+    protected $commonQuery;
+    protected $countryQuery;
 
     public function __construct()
     {
-        $this->database = App::get('database');
+        $this->commonQuery = App::get('database')["common"];
+        $this->countryQuery = App::get('database')["country"];
         $this->error_503 = "<p class='error'>Service Unavailable.</p>";
     }
 
@@ -21,14 +24,14 @@ class PagesController
 
         try {
 
-            if ($this->database->nameExists('countries', 'country_name', $countryName)) {
+            if ($this->commonQuery->nameExists('countries', 'country_name', $countryName)) {
                 redirect('Orizon');
                 // 409 Conflict
                 http_response_code(409);
                 echo "<p class='error'>The country you have sent already exists.</p>";
             }
 
-            if (!$this->database->insertCountry('countries', [
+            if (!$this->countryQuery->insertCountry('countries', [
                 'country_name' => $countryName
             ])) {
                 redirect('Orizon');
@@ -57,14 +60,14 @@ class PagesController
             $id = $_POST['country_id'];
             $countryName = $_POST['new_name'];
 
-            if ($this->database->nameExists('countries', 'country_name', $countryName)) {
+            if ($this->commonQuery->nameExists('countries', 'country_name', $countryName)) {
                 redirect('Orizon');
                 // 409 Conflict
                 http_response_code(409);
                 echo json_encode(["message" => "Country alredy exists."]);
             }
 
-            if (!$this->database->editCountry('countries', [
+            if (!$this->countryQuery->editCountry('countries', [
                 'id' => $id,
                 'country_name' => $countryName
             ])) {
@@ -89,7 +92,7 @@ class PagesController
     public function removeCountry1()
     {
         try {
-            if ($this->database->delete('countries', [
+            if ($this->commonQuery->delete('countries', [
                 'id' => $_POST['id']
             ])) {
                 redirect('Orizon');
@@ -112,7 +115,7 @@ class PagesController
     public function removeCountry()
     {
         try {
-            if (!$this->database->delete('countries', [
+            if (!$this->commonQuery->delete('countries', [
                 'id' => $_POST['id']
             ])) {
                 redirect('Orizon');

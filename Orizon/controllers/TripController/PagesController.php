@@ -9,10 +9,13 @@ class PagesController
 {
     protected $database;
     protected $error_503;
+    protected $commonQuery;
+    protected $TripQuery;
 
     public function __construct()
     {
-        $this->database = App::get('database');
+        $this->commonQuery = App::get('database')["common"];
+        $this->TripQuery = App::get('database')["trip"];
         $this->error_503 = "<p class='error'>Service Unavailable.</p>";
     }
 
@@ -21,7 +24,7 @@ class PagesController
     {
         try {
 
-            if (!$this->database->insertTrip('trips', [
+            if (!$this->TripQuery->insertTrip('trips', [
                 'destination' => $_POST['destination'],
                 'available_seats' => $_POST['available_seats']
             ])) {
@@ -45,7 +48,7 @@ class PagesController
     public function removeTrip()
     {
         try {
-            if (!$this->database->delete('trips', [
+            if (!$this->commonQuery->delete('trips', [
                 'id' => $_POST['id']
             ])) {
                 redirect('Orizon');
@@ -68,7 +71,7 @@ class PagesController
     public function editTrip()
     {
         try {
-            if (!$this->database->editTrip('trips', [
+            if (!$this->TripQuery->editTrip('trips', [
                 'id' => $_POST['trip_id'],
                 'destination' => $_POST['new_destination'],
                 'available_seats' => $_POST['available_seats']
@@ -101,7 +104,7 @@ class PagesController
             http_response_code(200);
         }
 
-        $available_trips = $this->database->filterTrips('trips', $countryName, $availableSeats);
+        $available_trips = $this->TripQuery->filterTrips('trips', $countryName, $availableSeats);
 
         if (!$available_trips) {
             // 503 Service Unavailable

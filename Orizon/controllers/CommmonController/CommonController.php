@@ -9,8 +9,8 @@ class CommonController
     public static function readData()
     {
         try {
-            $countries = App::get('database')->selectAll('countries');
-            $trips = App::get('database')->selectAll('trips');
+            $countries = App::get('database')['common']->selectAll('countries');
+            $trips = App::get('database')['common']->selectAll('trips');
 
             if (empty($countries) && empty($trips)) {
                 // 204 No Content

@@ -6,16 +6,18 @@ use App\Core\App;
 
 class AppController
 {
-    protected $database;
+    protected $commonQuery;
+    protected $TripQuery;
 
     public function __construct()
     {
-        $this->database = App::get('database');
+        $this->commonQuery = App::get('database')["common"];
+        $this->TripQuery = App::get('database')["trip"];
     }
 
     public function readTrip()
     {
-        $countryList = $this->database->selectAll('trips');
+        $countryList = $this->commonQuery->selectAll('trips');
 
         if (empty($countryList)) {
             // 200 Okay
@@ -45,7 +47,7 @@ class AppController
             return http_response_code(400);
         }
 
-        if (!$this->database->insertTrip('trips', [
+        if (!$this->TripQuery->insertTrip('trips', [
             'destination' => $data->destination,
             'available_seats' => $data->available_seats
         ])) {
@@ -73,13 +75,13 @@ class AppController
             return http_response_code(400);
         }
 
-        if (!$this->database->doExists('trips', 'id', $id)) {
+        if (!$this->commonQuery->doExists('trips', 'id', $id)) {
             // 404 Not found
             echo json_encode(["message" => "Country not found or unable to delete."]);
             return http_response_code(404);
         }
 
-        if (!$this->database->delete('trips', [
+        if (!$this->commonQuery->delete('trips', [
             'id' => $id
         ])) {
             //503 Service Unavailable
@@ -100,7 +102,7 @@ class AppController
     {
         $data = json_decode(file_get_contents("php://input"));
 
-        if (!$this->database->doExists('trips', 'id', $data->id)) {
+        if (!$this->commonQuery->doExists('trips', 'id', $data->id)) {
             echo json_encode(["message" => "trip not found or unable to update."]);
             return http_response_code(404);
         }
@@ -112,7 +114,7 @@ class AppController
             return http_response_code(400);
         }
 
-        if (!$this->database->editTrip('trips', [
+        if (!$this->TripQuery->editTrip('trips', [
 
             'id' => $data->id,
             'destination' => $data->destination,
@@ -135,7 +137,7 @@ class AppController
         $countryName = isset($_GET['filters']['country_name']) ? str_replace("'", '', $_GET['filters']['country_name']) : null;
         $availableSeats = isset($_GET['filters']['available_seats']) ? $_GET['filters']['available_seats'] : null;
 
-        $available_trips = $this->database->filterTrips('trips', $countryName, $availableSeats);
+        $available_trips = $this->TripQuery->filterTrips('trips', $countryName, $availableSeats);
 
         if (!$available_trips) {
             // 503 Service Unavailable

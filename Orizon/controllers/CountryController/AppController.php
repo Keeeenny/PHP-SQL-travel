@@ -6,16 +6,18 @@ use App\Core\App;
 
 class AppController
 {
-    protected $database;
+    protected $commonQuery;
+    protected $countryQuery;
 
     public function __construct()
     {
-        $this->database = App::get('database');
+        $this->commonQuery = App::get('database')["common"];
+        $this->countryQuery = App::get('database')["country"];
     }
 
     public function readCountry()
     {
-        $countryList = $this->database->selectAll('countries');
+        $countryList = $this->commonQuery->selectAll('countries');
 
         if (empty($countryList)) {
             // 200 Okay
@@ -39,13 +41,13 @@ class AppController
             return http_response_code(400);
         }
 
-        if ($this->database->nameExists('countries', 'country_name', $data->country_name)) {
+        if ($this->commonQuery->nameExists('countries', 'country_name', $data->country_name)) {
             // 409 Conflict
             echo json_encode(["message" => "Country alredy exists."]);
             return http_response_code(409);
         }
 
-        if (!$this->database->insertCountry('countries', [
+        if (!$this->countryQuery->insertCountry('countries', [
             'country_name' => $data->country_name
         ])) {
             //503 Service Unavailable
@@ -74,13 +76,13 @@ class AppController
             return http_response_code(400);
         }
 
-        if (!$this->database->doExists('countries', 'id', $id)) {
+        if (!$this->commonQuery->doExists('countries', 'id', $id)) {
             // 404 Not found
             echo json_encode(["message" => "Country not found or unable to delete."]);
             return http_response_code(404);
         }
 
-        if (!$this->database->delete('countries', [
+        if (!$this->commonQuery->delete('countries', [
             'id' => $id
         ])) {
             //503 Service Unavailable
@@ -97,13 +99,13 @@ class AppController
     {
         $data = json_decode(file_get_contents("php://input"));
 
-        if (!$this->database->doExists('countries', 'id', $data->id)) {
+        if (!$this->commonQuery->doExists('countries', 'id', $data->id)) {
             // 404 Not found
             echo json_encode(["message" => "Country not found or unable to update."]);
             return http_response_code(404);
         }
 
-        if ($this->database->nameExists('countries', 'country_name', $data->country_name)) {
+        if ($this->commonQuery->nameExists('countries', 'country_name', $data->country_name)) {
             // 409 Conflict
             echo json_encode(["message" => "Country alredy exists."]);
             return http_response_code(409);
@@ -115,7 +117,7 @@ class AppController
             return http_response_code(400);
         }
 
-        if (!$this->database->editCountry('countries', [
+        if (!$this->countryQuery->editCountry('countries', [
             'id' => $data->id,
             'country_name' => $data->country_name
         ])) {
