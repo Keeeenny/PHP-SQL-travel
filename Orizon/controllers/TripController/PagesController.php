@@ -106,14 +106,14 @@ class PagesController
 
         $available_trips = $this->TripQuery->filterTrips('trips', $countryName, $availableSeats);
 
-        if (!$available_trips) {
-            // 503 Service Unavailable
-            http_response_code(503);
-        }
-
         if (empty($available_trips)) {
             // 200 Okay
             http_response_code(200);
+        }
+
+        if (!$available_trips) {
+            // 503 Service Unavailable
+            http_response_code(503);
         }
 
         return CommonController::index($available_trips);
