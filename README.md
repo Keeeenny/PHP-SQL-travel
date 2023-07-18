@@ -150,6 +150,8 @@ O solo per posti dispobili utilizzando:
 
 ## Extra
 
-A fini didattici, ho sviluppato un'interfaccia utente che consente di provare le varie funzionalità dell'applicazione. L'applicazione è strutturata in modo semplice, con due moduli di inserimento dei dati nel database e tre colonne che mostrano tutte le informazioni salvate. Accanto a ciascuna riga, sono presenti dei pulsanti che consentono di interagire con gli elementi salvati. Una volta installata l'applicazione sarà possibile provarlo nel proprio localhost.
+A fini didattici, ho sviluppato un'interfaccia utente che consente di provare le varie funzionalità dell'applicazione. L'applicazione è strutturata in modo semplice, con due moduli di inserimento dei dati nel database e tre colonne che mostrano tutte le informazioni salvate. Accanto a ciascuna riga, sono presenti dei pulsanti che consentono di interagire con gli elementi salvati. Una volta installata l'applicazione sarà possibile provarlo nel proprio localhost con il seguente URL:  
+
+`http://localhost/Orizon/`
 
 ![Filter trip](Orizon/assets/img/app.png)
